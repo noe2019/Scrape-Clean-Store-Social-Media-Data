@@ -28,7 +28,7 @@ This project focuses on scraping publicly available data from social media platf
   - A text editor or IDE for Python scripting (e.g., VS Code, PyCharm).
 
 ## **Database Design**
-The database schema is based on the provided ER diagram:
+The database schema is based on the following ER diagram:
 
 ### **Entities and Relationships**
 - **USER**: Stores user information.
@@ -36,6 +36,32 @@ The database schema is based on the provided ER diagram:
 - **COMMENTS**: Includes comments on posts.
 - **HASHTAGS**: Tracks hashtags used in posts.
 - **FOLLOWERS**: Captures relationships between users.
+
+Let's break down the entities and their relationships again for clarity:
+
+### Entities:
+1. **USER**  
+   - Attributes: `user_id` (Primary Key), `username`, `email`
+
+2. **POST**  
+   - Attributes: `post_id` (Primary Key), `caption`, `location`, `user_id_fk` (Foreign Key referencing USER)
+
+3. **COMMENTS**  
+   - Attributes: `comment_id` (Primary Key), `content`, `user_id_fk` (Foreign Key referencing USER), `post_id_fk` (Foreign Key referencing POST)
+
+4. **HASHTAGS**  
+   - Attributes: `hashtag_id` (Primary Key), `hashtag_text`, `post_id_fk` (Foreign Key referencing POST)
+
+5. **FOLLOWERS**  
+   - Attributes: `follower_id` (Primary Key), `user_id_fk` (Foreign Key referencing USER as the follower), `following_user_id_fk` (Foreign Key referencing USER as the one being followed)
+
+### Relationships:
+- **USER** `creates` **POST**  
+- **POST** `has` **COMMENTS**  
+- **POST** `includes` **HASHTAGS**  
+- **USER** `follows` **USER** (self-referential via FOLLOWERS table)
+
+![ER Diagram for Social Media Database](sandbox:/mnt/data/ER_Diagram_Social_Media.png)
 
 ### **SQL Script for Schema Creation**
 ```sql
