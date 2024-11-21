@@ -61,8 +61,6 @@ Let's break down the entities and their relationships again for clarity:
 - **POST** `includes` **HASHTAGS**  
 - **USER** `follows` **USER** (self-referential via FOLLOWERS table)
 
-![ER Diagram for Social Media Database](sandbox:/mnt/data/ER_Diagram_Social_Media.png)
-
 ### **SQL Script for Schema Creation**
 ```sql
 -- Create the database
